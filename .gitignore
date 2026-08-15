@@ -1,0 +1,22 @@
+# Downloaded third-party binary
+bin/
+*.zip
+
+# Audio files must never be committed
+*.ncm
+*.mp3
+*.flac
+*.m4a
+*.wav
+*.lrc
+
+# Dedup quarantine
+.dedup-quarantine/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+._*
