@@ -1,6 +1,6 @@
 ---
 name: ncm2mp3
-description: 本地音乐库处理工具集。用于网易云音乐加密文件（.ncm）解密/转换为可播放音频、音频格式转换（flac/m4a/wav 转 mp3，或互转，含码率与标签保留）、音乐库去重与重复曲目清理（同名不同码率、重复下载、改名副本）。当用户提到 ncm 解密、网易云加密文件打不开、批量转码、音乐文件夹里有重复歌曲要清理时使用。
+description: 本地音乐库处理工具集。用于网易云音乐加密文件（.ncm）解密/转换为可播放音频、音频格式转换（flac/m4a/wav 转 mp3，或互转，含码率与标签保留）、音乐库去重与重复曲目清理（同名不同码率、重复下载、改名副本）。当用户提到 ncm 解密、网易云加密文件打不开、批量转码、音乐文件夹里有重复歌曲要清理时使用。Local music library toolkit. Decrypts NetEase Cloud Music .ncm files into playable audio, transcodes between mp3/flac/m4a/wav while preserving tags and cover art, and de-duplicates a music folder using content hash unioned with normalized-title matching. Use when the user mentions ncm decryption, a NetEase download that will not open, batch audio conversion, or duplicate songs cluttering a music folder.
 ---
 
 # ncm2mp3
