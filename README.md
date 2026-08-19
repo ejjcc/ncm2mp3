@@ -1,4 +1,6 @@
-# ncm2mp3
+# music-converter
+
+仓库名 `music-convert-skill` 带 `-skill` 后缀，便于在 GitHub 上与普通 CLI 转换器区分；skill 本身的名字是 `music-converter`（SKILL.md frontmatter 的 `name`），安装后的目录名也是它。skills CLI 认 frontmatter 的 `name`，与仓库名无关。
 
 本地音乐库处理工具：一个 Claude Code Skill，外加三个可独立运行的 Python 脚本。
 
@@ -15,15 +17,14 @@
 ## 目录结构
 
 ```
-ncm2mp3/
+music-convert-skill/
 ├── SKILL.md            Skill 定义，供 Claude Code 读取
 ├── README.md
 ├── LICENSE
-├── references/         补充说明文档
 └── scripts/
     ├── ncm_decode.py   .ncm 解密（ncmdump 封装）
     ├── transcode.py    格式转换（ffmpeg 封装）
-    └── audio_dedup.py  目录去重（纯标准库）
+    └── audio_dedup.py  目录去重（分组纯标准库，时长列可选调 ffprobe）
 ```
 
 ## 安装
@@ -31,7 +32,7 @@ ncm2mp3/
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/<your-account>/ncm2mp3.git ~/Developer/ncm2mp3
+git clone https://github.com/ejjcc/music-convert-skill.git ~/Developer/music-convert-skill
 ```
 
 ### 2. 注册为 Claude Code Skill
@@ -40,13 +41,13 @@ git clone https://github.com/<your-account>/ncm2mp3.git ~/Developer/ncm2mp3
 
 ```bash
 mkdir -p ~/.claude/skills
-ln -s ~/Developer/ncm2mp3 ~/.claude/skills/ncm2mp3
+ln -s ~/Developer/music-convert-skill ~/.claude/skills/music-converter
 ```
 
 或复制一份（需要手动同步更新）：
 
 ```bash
-cp -R ~/Developer/ncm2mp3 ~/.claude/skills/ncm2mp3
+cp -R ~/Developer/music-convert-skill ~/.claude/skills/music-converter
 ```
 
 只想用命令行脚本的话，这一步可以跳过。
@@ -58,7 +59,7 @@ brew install taglib ffmpeg
 ```
 
 - `taglib`：macOS 版 ncmdump 二进制动态链接 `libtag.2.dylib`，未安装时程序启动即失败，报 `Library not loaded: /opt/homebrew/opt/taglib/lib/libtag.2.dylib`。
-- `ffmpeg`：`transcode.py` 依赖 `ffmpeg` 与 `ffprobe`。
+- `ffmpeg`：`transcode.py` 必需，依赖 `ffmpeg` 与 `ffprobe`。`audio_dedup.py` 的分组不依赖它，仅用 `ffprobe` 填报告里的时长列；未安装时该列显示 `--:--`，分组结果不受影响。
 
 ### 4. 安装 ncmdump
 
@@ -76,7 +77,7 @@ mv ncmdump /usr/local/bin/
 不想放进 PATH 时，用环境变量指定路径：
 
 ```bash
-export NCM2MP3_NCMDUMP=/path/to/ncmdump
+export MUSIC_CONVERTER_NCMDUMP=/path/to/ncmdump
 ```
 
 验证：

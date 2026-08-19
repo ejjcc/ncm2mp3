@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Transcode audio files with ffmpeg, preserving tags and embedded cover art.
 
-Part of the ncm2mp3 skill. Local library work only.
+Part of the music-converter skill. Local library work only.
 """
 
 import argparse

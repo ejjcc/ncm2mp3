@@ -1,9 +1,9 @@
 ---
-name: ncm2mp3
+name: music-converter
 description: 本地音乐库处理工具集。用于网易云音乐加密文件（.ncm）解密/转换为可播放音频、音频格式转换（flac/m4a/wav 转 mp3，或互转，含码率与标签保留）、音乐库去重与重复曲目清理（同名不同码率、重复下载、改名副本）。当用户提到 ncm 解密、网易云加密文件打不开、批量转码、音乐文件夹里有重复歌曲要清理时使用。Local music library toolkit. Decrypts NetEase Cloud Music .ncm files into playable audio, transcodes between mp3/flac/m4a/wav while preserving tags and cover art, and de-duplicates a music folder using content hash unioned with normalized-title matching. Use when the user mentions ncm decryption, a NetEase download that will not open, batch audio conversion, or duplicate songs cluttering a music folder.
 ---
 
-# ncm2mp3
+# music-converter
 
 本地音乐库的三项处理能力：ncm 解密、格式转换、去重。全部在本机文件系统上操作，不涉及设备同步、上传或云端服务。
 
@@ -12,7 +12,7 @@ description: 本地音乐库处理工具集。用于网易云音乐加密文件�
 ## 前置条件（一次性配置）
 
 1. `brew install taglib` —— 必须。ncmdump 的 macOS 预编译二进制动态链接 taglib，未安装时启动即失败，报 `Library not loaded: /opt/homebrew/opt/taglib/lib/libtag.2.dylib`。
-2. 下载 ncmdump：https://github.com/taurusxin/ncmdump 的 release 1.5.1，本机（Apple Silicon）取 `ncmdump-1.5.1-macos-arm64.zip`（另有 linux-amd64 / windows-amd64）。解压后放入 PATH，或用环境变量 `NCM2MP3_NCMDUMP` 指向二进制绝对路径。
+2. 下载 ncmdump：https://github.com/taurusxin/ncmdump 的 release 1.5.1，本机（Apple Silicon）取 `ncmdump-1.5.1-macos-arm64.zip`（另有 linux-amd64 / windows-amd64）。解压后放入 PATH，或用环境变量 `MUSIC_CONVERTER_NCMDUMP` 指向二进制绝对路径。
 3. 清除隔离属性：从浏览器下载的二进制带 `com.apple.quarantine` xattr，需 `xattr -d com.apple.quarantine <path>` 后才能执行。
 4. `brew install ffmpeg` —— 转码与去重报告的时长列依赖 ffmpeg / ffprobe。
 

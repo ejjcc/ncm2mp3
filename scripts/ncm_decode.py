@@ -37,7 +37,7 @@ def is_appledouble(path: Path) -> bool:
 
 def resolve_ncmdump() -> Path | None:
     """Resolve the ncmdump binary: env var, then PATH, then ./bin next to the repo."""
-    env_value = os.environ.get("NCM2MP3_NCMDUMP")
+    env_value = os.environ.get("MUSIC_CONVERTER_NCMDUMP")
     if env_value:
         candidate = Path(env_value).expanduser()
         return candidate if candidate.is_file() else None
@@ -226,7 +226,7 @@ def main() -> int:
     binary = resolve_ncmdump()
     if binary is None:
         print(
-            "error: ncmdump not found. Set NCM2MP3_NCMDUMP, put ncmdump on PATH, "
+            "error: ncmdump not found. Set MUSIC_CONVERTER_NCMDUMP, put ncmdump on PATH, "
             "or place it at bin/ncmdump in the repository.\n"
             "Releases: https://github.com/taurusxin/ncmdump/releases",
             file=sys.stderr,
